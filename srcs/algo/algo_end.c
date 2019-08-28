@@ -63,5 +63,6 @@ void	algo_end_for_b(t_pile *tab_tmp, t_all *res, int c_rb, int pos)
 				c_rb++;
 			}
 		}
+		
 	}
 }
