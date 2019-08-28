@@ -72,11 +72,11 @@ int		real_check(char **tab)
 	j = 0;
 	while (tab[i])
 	{
-		if (tab[i][0] != '-' && (ft_strlen(tab[i]) > 10 || (ft_strlen(tab[i]) == 10
-					&& (ft_strcmp(INT_MAX, tab[i]) < 0))))
+		if (tab[i][0] != '-' && (ft_strlen(tab[i]) > 10
+			|| (ft_strlen(tab[i]) == 10 && (ft_strcmp(INT_MAX, tab[i]) < 0))))
 			return (-1);
-		if (tab[i][0] == '-' && (ft_strlen(tab[i]) > 11 || (ft_strlen(tab[i]) == 11
-					&& (ft_strcmp(INT_MIN, &tab[i][1]) < 0))))
+		if (tab[i][0] == '-' && (ft_strlen(tab[i]) > 11 || (ft_strlen(tab[i])
+			== 11 && ft_strcmp(INT_MIN, &tab[i][1]) < 0)))
 			return (-1);
 		while (tab[i][j])
 		{

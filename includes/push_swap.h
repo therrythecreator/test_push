@@ -49,6 +49,7 @@ int				ft_check_max(int *tab, int size);
 int				check_tab_pivot(t_pile *a, int pivot);
 int				check_tab_pivot_b(t_pile *a, int pivot);
 int				find_pos_pivot(t_pile *target, int pile);
+void			algo_five(t_all *res);
 typedef struct	s_algo
 {
 	int		type;

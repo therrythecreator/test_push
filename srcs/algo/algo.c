@@ -21,9 +21,11 @@ static const t_algo	g_algo[] = {
 
 void	algo_minus(t_pile *tmp, t_all *res)
 {
-	int c;
-
-	c = 0;
+	if (tmp->size >= 4)
+	{
+		algo_five(res);
+		return ;
+	}
 	if (tmp->size <= 1)
 		return ;
 	if (tmp->size == 2)
@@ -53,30 +55,23 @@ void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos)
 	if (!(tab_tmp = cpy_tab_pile(res->b, res->pb)))
 		return ;
 	pos = find_pos_pivot(tab_tmp, 0);
-	//ft_printf("NREW B = %d\n", tab_tmp->numbers[pos]);
 	while (++c < tab_tmp->size)
 	{
-		//ft_printf("%d   %d\n", tab_tmp->numbers[pos], tab_tmp->numbers[c]);
 		if (c > pos && check_tab(res->a->numbers, res->a->size - 1) == -1
 				&& check_tab_pivot_b(res->b, tab_tmp->numbers[pos]) == 1)
 			break ;
-		if (res->a->size > 1 && res->a->numbers[0] > res->a->numbers[1])
-			check_move(res, "sa");
+		res->a->numbers[0] > res->a->numbers[1] ? check_move(res, "sa") : 0;
 		if (tab_tmp->numbers[c] >= tab_tmp->numbers[pos])
 		{
 			check_move(res, "pa");
-			if (res->a->size > 2 && c == pos) //&& check_tab_pivot_b(res->b, tab_tmp->numbers[pos]) == -1)
-			{
+			if (res->a->size > 2 && c == pos)
 				check_move(res, "ra");
-		//		ft_printf("%d   %d\n", tab_tmp->numbers[pos], tab_tmp->numbers[c]);
-			}
 		}
 		else
 			c_rb = c_rb + check_move(res, "rb");
 	}
-//	ft_printf("ENDB = %d\n", tab_tmp->numbers[pos]);
 	algo_end_for_b(tab_tmp, res, c_rb, pos);
-	if (res->a->size > 2 && c > pos)// && check_tab_pivot_b(res->b, tab_tmp->numbers[pos]) == -1)
+	if (res->a->size > 2 && c > pos)
 		check_move(res, "rra");
 	pile_free(tab_tmp);
 }
@@ -89,7 +84,6 @@ void	algo_for_a(int c, t_all *res, t_pile *tab_tmp, int pos)
 		return ;
 	pos = find_pos_pivot(tab_tmp, 0);
 	c_ra = 0;
-	//ft_printf("NREW A = %d", tab_tmp->numbers[pos]);
 	while (++c < tab_tmp->size
 			&& (check_tab(res->a->numbers, res->a->size) == -1))
 	{
@@ -117,18 +111,15 @@ void	algo_begin(int c, t_all *res, t_pile *tab_tmp, int pos)
 
 	if (!(tab_tmp = cpy_tab_pile(res->a, res->pa)))
 		return ;
-	if (res->size <= 3)
+	if (res->size <= 5)
 		algo_minus(tab_tmp, res);
-	//if (res->size <= 5)
-	//	algo_five(res);
 	pos = find_pos_pivot(res->a, 0);
-	//ft_printf("%d", tab_tmp->numbers[pos]);
 	i = res->a->size;
-	while (res->size > 3 && ++c < i && res->a->size > 1) //&& (c < pos || check_tab_pivot(res->a, tab_tmp->numbers[pos]) == -1))
+	while (res->size > 5 && ++c < i && res->a->size > 1)
 	{
 		if (c <= pos && res->b->size > 1
 					&& res->b->numbers[0] < res->b->numbers[1])
-				check_move(res, "sb");
+			check_move(res, "sb");
 		if (tab_tmp->numbers[c] <= tab_tmp->numbers[pos])
 		{
 			check_move(res, "pb");

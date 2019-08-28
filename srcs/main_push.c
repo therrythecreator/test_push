@@ -52,15 +52,9 @@ int		main(int argc, char **argv)
 	if (check(argv) == -1 || check_double(res.a) == -1)
 		ft_error();
 	while (res.a->size > 1 && check_win(res.a, res.b) == -1)
-	{
 		algo_go(&res, 0);
-		//if (check_tab(res.a->numbers, res.a->size) == 1 && check_tab_b(res.b->numbers, res.b->size))
-		//	break ;
-	}
 	while (check_win(res.a, res.b) == -1)
 	{
-		//if (check_tab(res.a->numbers, res.a->size) == 1 && check_tab_b(res.b->numbers, res.b->size))
-		//	finish_push(&res);
 		while (check_win(res.a, res.b) == -1
 			&& check_tab(res.a->numbers, res.a->size) == 1)
 			algo_go(&res, 1);
