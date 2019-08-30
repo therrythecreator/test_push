@@ -51,7 +51,9 @@ void	algo_minus(t_pile *tmp, t_all *res)
 void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos)
 {
 	int c_rb;
+	int m;
 
+	m = 0;
 	c_rb = 0;
 	if (!(tab_tmp = cpy_tab_pile(res->b, res->pb)))
 		return ;
@@ -65,14 +67,17 @@ void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos)
 		if (tab_tmp->numbers[c] >= tab_tmp->numbers[pos])
 		{
 			check_move(res, "pa");
-			if (res->a->size > 2 && c == pos)
+			if (res->a->size > 2 && c == pos) //&& check_tab_pivot_b(res->b, tab_tmp->numbers[pos]) == -1)//&& m == 0 && tab_tmp->numbers[c] > tab_tmp->numbers[pos])
+			{
 				check_move(res, "ra");
+				m++;
+			}
 		}
 		else
 			c_rb = c_rb + check_move(res, "rb");
 	}
 	algo_end_for_b(tab_tmp, res, c_rb, pos);
-	if (res->a->size > 2 && c > pos)
+	if (res->a->size > 2 && c > pos && m == 1)
 		check_move(res, "rra");
 	pile_free(tab_tmp);
 }
