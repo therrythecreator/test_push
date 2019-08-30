@@ -62,6 +62,7 @@ t_pile	*init_pile_a(char **numbers, int size, int i)
 			a->numbers[++j] = ft_atoi(new[b]);
 			size++;
 		}
+		ft_strrdel(new);
 		b = -1;
 	}
 	a->size = size;
@@ -70,7 +71,7 @@ t_pile	*init_pile_a(char **numbers, int size, int i)
 
 int		init(t_all *res, char **numbers, int size)
 {
-	if (size < 0)
+	if (numbers[1] == NULL || size < 0)
 		return (-1);
 	if (!(res->a = init_pile_a(numbers, 0, 0)))
 		return (-1);

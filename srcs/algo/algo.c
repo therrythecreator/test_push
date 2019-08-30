@@ -32,6 +32,7 @@ void	algo_minus(t_pile *tmp, t_all *res)
 	{
 		if (tmp->numbers[0] > tmp->numbers[1])
 			check_move(res, "sa");
+		pile_free(tmp);
 		return ;
 	}
 	pile_free(tmp);

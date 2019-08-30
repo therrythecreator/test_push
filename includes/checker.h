@@ -43,6 +43,7 @@ typedef struct	s_all
 	t_argv			*commands;
 	SDL_Event		*event;
 	SDL_Renderer	*renderer;
+	SDL_Window		*pwindow;
 	int				max_int;
 	int				delay;
 	int				prev_time;

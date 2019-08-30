@@ -43,7 +43,7 @@ void			algo_begin(int c, t_all *res, t_pile *tab_tmp, int pos);
 void			algo_for_a(int c, t_all *res, t_pile *tab_tmp, int pos);
 void			algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos);
 void			ft_test(t_all	*res);
-void			ft_error();
+void			ft_error(void);
 void			algo_minus(t_pile *tmp, t_all *res);
 int				ft_check_max(int *tab, int size);
 int				check_tab_pivot(t_pile *a, int pivot);

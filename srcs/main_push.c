@@ -48,7 +48,7 @@ int		main(int argc, char **argv)
 		return (0);
 	res.verif_exe = 1;
 	if (init(&res, argv, ft_size(argv)) == -1)
-		return (0);
+		ft_error();
 	if (check(argv) == -1 || check_double(res.a) == -1)
 		ft_error();
 	while (res.a->size > 1 && check_win(res.a, res.b) == -1)

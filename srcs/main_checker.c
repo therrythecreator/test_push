@@ -15,6 +15,7 @@
 void	ft_error(void)
 {
 	write(2, "Error\n", 6);
+	exit(0);
 }
 
 void	read_mv(t_all *res)
@@ -38,10 +39,7 @@ void	read_mv(t_all *res)
 
 void	checker_go(t_all *res)
 {
-	if (res->commands->v == 1)
-		init_window(res);
-	else
-		read_mv(res);
+	read_mv(res);
 	check_win(res->a, res->b) == 1 ? ft_printf("OK\n") : ft_printf("KO\n");
 	if (res->commands->m == 1)
 		ft_printf("Mouvements = %d\n", res->c_mv);
@@ -59,13 +57,11 @@ int		main(int argc, char **argv)
 	if (init(&res, &argv[i], ft_size(argv)) == -1)
 		return (0);
 	if (check(&argv[i]) == -1 || check_double(res.a) == -1)
-	{
 		ft_error();
-		return (0);
-	}
 	if (res.commands->v == 1)
 		init_window(&res);
-	checker_go(&res);
+	else
+		checker_go(&res);
 	all_free(&res);
 	return (0);
 }

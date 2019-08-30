@@ -88,6 +88,7 @@ void	init_window(t_all *res)
 			SDL_WINDOW_MAXIMIZED);
 	renderer = SDL_CreateRenderer(pwindow, -1, 0);
 	res->renderer = renderer;
+	res->pwindow = pwindow;
 	res->event = &event;
 	res->delay = 200;
 	res->prev_time = 0;

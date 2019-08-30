@@ -27,16 +27,17 @@ LIBFT		=	libft/libft.a
 LIB 		= 	libft
 
 SDL2		= -I SDL2/include -L SDL2/lib -l SDL2-2.0.0
+SDL2_TTF 	= -I SDL2_ttf/2.0.15/include -L SDL2_ttf/2.0.15/lib -l SDL2_ttf-2.0.0
 FLAGS		=	-Wall -Wextra -Werror
 
 all: $(NAME1) $(NAME2)
 
 $(NAME1): $(OBJ1) $(LIBFT)
-		@gcc -o $(NAME1) $(LIBFT) $(OBJ1) $(SDL2) -I SDL2_ttf/2.0.15/include -L SDL2_ttf/2.0.15/lib -l SDL2_ttf-2.0.0 -g
+		@gcc -o $(NAME1) $(LIBFT) $(OBJ1) $(SDL2) $(SDL2_TTF) -g3 
 		@printf "$(GREEN)\\nCompilation CHECKER finish \\n$(END_COLOR)"
 
 $(NAME2): $(OBJ2)
-		@gcc -o $(NAME2) $(LIBFT) $(OBJ2) $(SDL2) -I SDL2_ttf/2.0.15/include -L SDL2_ttf/2.0.15/lib -l SDL2_ttf-2.0.0 -g
+		@gcc -o $(NAME2) $(LIBFT) $(OBJ2) $(SDL2) $(SDL2_TTF) -g3
 		@printf "$(GREEN)Compilation PUSH SWAP finish \\n$(END_COLOR)"
 
 $(OBJ_FOLDER)/%.o:	$(SRC_FOLDER)/%.c | $(OBJ_FOLDER)

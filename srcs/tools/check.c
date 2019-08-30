@@ -103,7 +103,10 @@ int		check(char **argv)
 		if (!(new = ft_strsplit(argv[i], ' ')))
 			return (-1);
 		if (real_check(new) == -1)
+		{
+			ft_strrdel(new);
 			return (-1);
+		}
 		ft_strrdel(new);
 		i++;
 	}
