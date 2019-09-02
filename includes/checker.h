@@ -40,7 +40,6 @@ typedef struct	s_all
 	t_pile			*b;
 	t_pile			*pa;
 	t_pile			*pb;
-	t_pile			*pf;
 	t_argv			*commands;
 	SDL_Event		*event;
 	SDL_Renderer	*renderer;
@@ -51,7 +50,6 @@ typedef struct	s_all
 	int				c_mv;
 	int				size;
 	int				verif_exe;
-	int				again;
 
 }				t_all;
 
