@@ -37,6 +37,31 @@ int		check_tab_b(int *target, int size)
 	}
 	return (1);
 }
+int		find_median(int *a, int size)
+{
+	return (a[(size / 2)]);
+}
+
+int		find_quartile_2(t_pile *a)
+{
+	return (find_median(&a->numbers[(a->size / 2)], a->size / 2));
+}
+
+int		find_quartile(int *a, int size)
+{
+	return (a[(size / 4)]);	
+}
+
+void	init_pf(t_all *res)
+{
+	res->pf->numbers[3] = find_quartile(res->a->numbers, res->a->size);
+	res->pf->numbers[2] = find_median(res->a->numbers, res->a->size);
+	res->pf->numbers[1] = find_quartile_2(res->a);
+	res->pf->numbers[0] = res->a->numbers[res->a->size - 1];
+	//	ft_printf("quaritle 2 == %d", res->pf->numbers[0]);
+	//ft_printf("quaritle 2 == %d", i);
+
+}
 
 int		main(int argc, char **argv)
 {

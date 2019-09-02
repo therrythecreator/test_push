@@ -81,7 +81,11 @@ int		init(t_all *res, char **numbers, int size)
 		return (-1);
 	if (!(res->pb = init_pile_b(res->a->size)))
 		return (-1);
+	if (!(res->pf = init_pile_b(4)))
+		return (-1);
+		res->pf->size = 4;
 	res->renderer = NULL;
+	res->again = 0;
 	res->size = res->a->size;
 	res->event = NULL;
 	res->delay = 200;
