@@ -48,6 +48,47 @@ void	algo_minus(t_pile *tmp, t_all *res)
 	}
 }
 
+int		find_pivot_median(t_pile *tmp)
+{
+	int i;
+	int j;
+	int e_sup;
+	int e_inf;
+	int res;
+
+	if (tmp->size % 2 == 1)
+		res = 1;
+	else
+		res = 0;
+	e_sup = 0;
+	e_inf = 0;
+	j = 0;
+	i = 0;
+	while (i < tmp->size - 1)
+	{
+		while (j < tmp->size - 1)
+		{
+			if (tmp->numbers[i] < tmp->numbers[j])
+				e_inf++;
+			else if (tmp->numbers[i] > tmp->numbers[j])
+				e_sup++;
+			j++;
+			
+		}
+				//ft_printf("number median == %d    sup = %d     inf = %d", tmp->numbers[i], e_sup, e_inf);
+		if (e_sup - e_inf == res)
+		{
+			//ft_printf("number median == %d", e_sup);
+			return (i);
+		}
+		e_sup = 0;
+		e_inf = 0;
+		j = 0;
+		i++;
+	}
+	return (i);
+}
+
 void	algo_for_b(int c, t_all *res, t_pile *tab_tmp, int pos)
 {
 	int c_rb;
@@ -88,7 +129,7 @@ void	algo_for_a(int c, t_all *res, t_pile *tab_tmp, int pos)
 
 	if (!(tab_tmp = cpy_tab_pile(res->a, res->pa)))
 		return ;
-	pos = find_pos_pivot(tab_tmp, 0);
+	pos = find_pivot_median(tab_tmp);
 	c_ra = 0;
 	while (++c < tab_tmp->size
 			&& (check_tab(res->a->numbers, res->a->size) == -1))
@@ -119,7 +160,8 @@ void	algo_begin(int c, t_all *res, t_pile *tab_tmp, int pos)
 		return ;
 	if (res->size <= 5)
 		algo_minus(tab_tmp, res);
-	pos = find_pos_pivot(res->a, 0);
+	pos = find_pivot_median(res->a);
+	//ft_printf("first pivot  == %d", tab_tmp->numbers[pos]);
 	i = res->a->size;
 	while (res->size > 5 && ++c < i && res->a->size > 1)
 	{
