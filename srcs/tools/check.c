@@ -63,24 +63,23 @@ int		check_double(t_pile *a)
 	return (1);
 }
 
-int		real_check(char **tab)
+int		real_check(char **tab, int i, int j)
 {
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
 	while (tab[i])
 	{
-		if (tab[i][0] != '-' && (ft_strlen(tab[i]) > 10
+		if (tab[i][0] != '+' && tab[i][0] != '-' && (ft_strlen(tab[i]) > 10
 			|| (ft_strlen(tab[i]) == 10 && (ft_strcmp(INT_MAX, tab[i]) < 0))))
 			return (-1);
 		if (tab[i][0] == '-' && (ft_strlen(tab[i]) > 11 || (ft_strlen(tab[i])
 			== 11 && ft_strcmp(INT_MIN, &tab[i][1]) < 0)))
 			return (-1);
+		if (tab[i][0] == '+' && (ft_strlen(tab[i]) > 11
+			|| (ft_strlen(tab[i]) == 11
+				&& (ft_strcmp(INT_MAX, &tab[i][1]) < 0))))
+			return (-1);
 		while (tab[i][j])
 		{
-			if (tab[i][0] == '-' && tab[i][1] && j == 0)
+			if ((tab[i][0] == '-' || tab[i][0] == '+') && tab[i][1] && j == 0)
 				j++;
 			if (ft_isdigit(tab[i][j]) != 1)
 				return (-1);
@@ -102,7 +101,7 @@ int		check(char **argv)
 	{
 		if (!(new = ft_strsplit(argv[i], ' ')))
 			return (-1);
-		if (real_check(new) == -1)
+		if (real_check(new, 0, 0) == -1)
 		{
 			ft_strrdel(new);
 			return (-1);
