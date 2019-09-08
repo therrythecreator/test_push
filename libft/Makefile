@@ -33,12 +33,14 @@ END_COLOR = \033[0m
 
 OBJ = $(addprefix $(BIN_FOLDER),$(SRC:.c=.o))
 
+INCS = $(HEADER)
+
 all: $(NAME)
 
 bin:
 	@mkdir bin
 
-$(NAME): bin  $(OBJ)
+$(NAME): bin  $(OBJ) $(INCS)
 	@ar rc $(NAME) $(OBJ)
 	@printf "$(GREEN) LIBFT DONE SUCESS! $(END_COLOR)"
 

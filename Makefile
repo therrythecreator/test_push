@@ -13,9 +13,12 @@ HEADER1 	= push_swap.h
 SRC_FOLDER	=	srcs
 BIN_FOLDER	=	bin
 OBJ_FOLDER	=	$(BIN_FOLDER)/obj
+INC_FOLDER  =   includes
 
 OBJ1 		= $(addprefix $(OBJ_FOLDER)/,$(SRC1:.c=.o))
 OBJ2		= $(addprefix $(OBJ_FOLDER)/,$(SRC2:.c=.o))
+INCS1        = $(addprefix $(INC_FOLDER)/,$(HEADER))
+INCS2       = $(addprefix $(INC_FOLDER)/,$(HEADER))
 SRCLOCA		= $(shell find $(SRC_FOLDER) -type d)
 OBJLOCA		= $(subst $(SRC_FOLDER), $(OBJ_FOLDER), $(SRCLOCA))
 
@@ -32,11 +35,11 @@ FLAGS		=	-Wall -Wextra -Werror
 
 all: $(NAME1) $(NAME2)
 
-$(NAME1): $(OBJ1) $(LIBFT)
+$(NAME1): $(OBJ1) $(INCS1) $(LIBFT)
 		@gcc -o $(NAME1) $(LIBFT) $(OBJ1) $(SDL2) $(SDL2_TTF) -g3 
 		@printf "$(GREEN)\\nCompilation CHECKER finish \\n$(END_COLOR)"
 
-$(NAME2): $(OBJ2)
+$(NAME2): $(OBJ2) $(INCS2) 
 		@gcc -o $(NAME2) $(LIBFT) $(OBJ2) $(SDL2) $(SDL2_TTF) -g3
 		@printf "$(GREEN)Compilation PUSH SWAP finish \\n$(END_COLOR)"
 
@@ -44,7 +47,7 @@ $(OBJ_FOLDER)/%.o:	$(SRC_FOLDER)/%.c | $(OBJ_FOLDER)
 	@gcc $< -c -o $@ $(FLAGS) -g
 
 $(LIBFT):
-	@ make -C $(LIB) --no-print-directory
+	@make -C $(LIB)
 
 $(OBJ_FOLDER):
 	@mkdir -p $(OBJLOCA)
